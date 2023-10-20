@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import "./peoples.page.sass";
 import PeopleItem from "../../components/people-item/people-item.component";
+import SearchInput from "../../components/search-input/search-input.component";
+import "./peoples.page.sass";
 
 const PeoplesPage = () => {
   const [peoples, setPeoples] = useState([]);
@@ -25,6 +26,9 @@ const PeoplesPage = () => {
 
   return (
     <div className="peoples-page">
+      <SearchInput />
+
+      {/* TODO add loading */}
       {isLoading && <div className="">Loading...</div>}
 
       {!isLoading && peoples.map((item) => <PeopleItem item={item} />)}
