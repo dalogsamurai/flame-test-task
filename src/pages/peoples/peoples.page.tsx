@@ -6,32 +6,32 @@ import PeopleList from "../../components/people-list/people-list.component";
 import "./peoples.page.sass";
 
 const PeoplesPage = () => {
-  const [peoples, setPeoples] = useState<IPeople[]>([]);
-  const [isLoading, setLoading] = useState(true);
+	const [peoples, setPeoples] = useState<IPeople[]>([]);
+	const [isLoading, setLoading] = useState(true);
 
-  const getPeoples = async () => {
-    const res = await fetch("https://swapi.dev/api/people");
+	const getPeoples = async () => {
+		const res = await fetch("https://swapi.dev/api/people");
 
-    if (res.ok) {
-      const resData = JSON.parse(await res.text()).results;
-      setLoading(false);
-      setPeoples(resData);
-    }
-  };
+		if (res.ok) {
+			const resData = JSON.parse(await res.text()).results;
+			setLoading(false);
+			setPeoples(resData);
+		}
+	};
 
-  useEffect(() => {
-    getPeoples();
-  }, []);
+	useEffect(() => {
+		getPeoples();
+	}, []);
 
-  return (
-    <div className="peoples-page">
-      <SearchInput />
+	return (
+		<div className="peoples-page">
+			<SearchInput />
 
-      {isLoading && <Loader />}
+			{isLoading && <Loader />}
 
-      {!isLoading && peoples && <PeopleList items={peoples} />}
-    </div>
-  );
+			{!isLoading && peoples && <PeopleList items={peoples} />}
+		</div>
+	);
 };
 
 export default PeoplesPage;
