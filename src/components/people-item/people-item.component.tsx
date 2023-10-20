@@ -1,14 +1,21 @@
-import { FC } from "react";
-import { IPeople } from "../../types/IPeople";
 import "./people-item.component.sass";
 
-interface Props {
-	item: IPeople;
-}
+type Props = {
+  height: string;
+  mass: string;
+  name: string;
+  hair_color: string;
+};
 
-const PeopleItem = ({ item }: Props) => {
-	// TODO
-	return <div className="">{item.name}</div>;
+const PeopleItem = ({ hair_color, height, mass, name }: Props) => {
+  return (
+    <tr>
+      <td>{name}</td>
+      <td>{height}</td>
+      <td>{mass}</td>
+      <td>{hair_color}</td>
+    </tr>
+  );
 };
 
 export default PeopleItem;

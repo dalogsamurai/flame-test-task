@@ -1,39 +1,37 @@
 import { useEffect, useState } from "react";
-import PeopleItem from "../../components/people-item/people-item.component";
 import SearchInput from "../../components/search-input/search-input.component";
-import "./peoples.page.sass";
 import Loader from "../../components/loader/loader.component";
+import { IPeople } from "../../types/IPeople";
+import PeopleList from "../../components/people-list/people-list.component";
+import "./peoples.page.sass";
 
 const PeoplesPage = () => {
-	const [peoples, setPeoples] = useState([]);
-	const [isLoading, setLoading] = useState(true);
+  const [peoples, setPeoples] = useState<IPeople[]>([]);
+  const [isLoading, setLoading] = useState(true);
 
-	const getPeoples = async () => {
-		const res = await (await fetch("https://swapi.dev/api/people")).text();
+  const getPeoples = async () => {
+    const res = await fetch("https://swapi.dev/api/people");
 
-		const resPeoples = JSON.parse(res).results;
+    if (res.ok) {
+      const resData = JSON.parse(await res.text()).results;
+      setLoading(false);
+      setPeoples(resData);
+    }
+  };
 
-		// console.log(resPeoples);
-		setPeoples(resPeoples);
-		if (peoples) {
-			setLoading(false);
-		}
-		console.log(peoples);
-	};
+  useEffect(() => {
+    getPeoples();
+  }, []);
 
-	useEffect(() => {
-		getPeoples();
-	}, []);
+  return (
+    <div className="peoples-page">
+      <SearchInput />
 
-	return (
-		<div className="peoples-page">
-			<SearchInput />
+      {isLoading && <Loader />}
 
-			{isLoading && <Loader />}
-
-			{!isLoading && peoples.map((item) => <PeopleItem item={item} />)}
-		</div>
-	);
+      {!isLoading && peoples && <PeopleList items={peoples} />}
+    </div>
+  );
 };
 
 export default PeoplesPage;
