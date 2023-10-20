@@ -6,7 +6,6 @@ import {
   PEOPLES_PAGE_PATH,
 } from "./routes/paths";
 import FavoritesPage from "./pages/favorites/favorites.page";
-import Menu from "./components/menu/menu.component";
 import PeoplesPage from "./pages/peoples/peoples.page";
 import "./App.sass";
 
@@ -14,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Menu />}>
+        <Route path="/">
           <Route path={MAIN_PAGE_PATH} element={<MainPage />} />
           <Route path={PEOPLES_PAGE_PATH} element={<PeoplesPage />} />
           <Route path={FAVORITES_PAGE_PATH} element={<FavoritesPage />} />
