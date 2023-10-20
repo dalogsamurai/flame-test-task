@@ -1,31 +1,21 @@
-import { Navigate, Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import MainPage from "./pages/main/main.page";
+import {
+  FAVORITES_PAGE_PATH,
+  MAIN_PAGE_PATH,
+  PEOPLES_PAGE_PATH,
+} from "./routes/paths";
+import FavoritesPage from "./pages/favorites/favorites.page";
+import Menu from "./components/menu/menu.component";
 
 function App() {
   return (
     <div className="App">
-      {/* <Router location={''} navigator={}> */}
-      {/* <Layout> */}
-      {/* <Routes> */}
-      {/* <Route path="/" element={<PostsPage />} /> */}
-      {/* <Route path="/people" element={<SettingsPage />}>
-            <Route path=":id" element={<SettingsWallet />} />
-            </Route> */}
-      {/* <Route path="/favorites" element={<MessagesPage />} /> */}
-      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
-      {/* <Pages /> */}
-      {/* </Routes> */}
-      {/* </Layout> */}
-      {/* </Router> */}
       <Routes>
-        <Route path="/" element={<MainPage />}>
-          {/* <Route index element={<Home />} /> */}
-          {/* <Route path="about" element={<About />} /> */}
-          {/* <Route path="dashboard" element={<Dashboard />} /> */}
-
-          {/* Using path="*"" means "match anything", so this route
-                acts like a catch-all for URLs that we don't have explicit
-                routes for. */}
+        <Route path="/" element={<Menu />}>
+          <Route path={MAIN_PAGE_PATH} element={<MainPage />} />
+          {/* <Route path={PEOPLES_PAGE_PATH} element={<MainPage />} /> */}
+          <Route path={FAVORITES_PAGE_PATH} element={<FavoritesPage />} />
           <Route path="*" element={<MainPage />} />
         </Route>
       </Routes>
