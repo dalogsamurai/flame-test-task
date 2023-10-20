@@ -8,37 +8,37 @@ import { Provider } from "react-redux";
 import "./index.css";
 
 const defaultState = {
-  heroes: [],
+	heroes: [],
 };
 
 const reducer = (state = defaultState, action: any) => {
-  switch (action.type) {
-    case "ADD_HERO":
-      // @ts-ignore
-      return { ...state, heroes: state.heroes.push(action.payload) };
-    case "DELETE_HERO":
-      // @ts-ignore
-      return { ...state, heroes: state.heroes.pop(action.payload) };
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case "ADD_HERO":
+			// @ts-ignore
+			return { ...state, heroes: state.heroes.push(action.payload) };
+		case "DELETE_HERO":
+			// @ts-ignore
+			return { ...state, heroes: state.heroes.pop(action.payload) };
+		default:
+			return state;
+	}
 };
 
 // @ts-ignore
 const store = createStore(reducer);
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+	document.getElementById("root") as HTMLElement,
 );
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<Provider store={store}>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</Provider>
+	</React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

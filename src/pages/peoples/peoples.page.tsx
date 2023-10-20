@@ -5,35 +5,35 @@ import "./peoples.page.sass";
 import Loader from "../../components/loader/loader.component";
 
 const PeoplesPage = () => {
-  const [peoples, setPeoples] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+	const [peoples, setPeoples] = useState([]);
+	const [isLoading, setLoading] = useState(true);
 
-  const getPeoples = async () => {
-    const res = await (await fetch("https://swapi.dev/api/people")).text();
+	const getPeoples = async () => {
+		const res = await (await fetch("https://swapi.dev/api/people")).text();
 
-    const resPeoples = JSON.parse(res).results;
+		const resPeoples = JSON.parse(res).results;
 
-    // console.log(resPeoples);
-    setPeoples(resPeoples);
-    if (peoples) {
-      setLoading(false);
-    }
-    console.log(peoples);
-  };
+		// console.log(resPeoples);
+		setPeoples(resPeoples);
+		if (peoples) {
+			setLoading(false);
+		}
+		console.log(peoples);
+	};
 
-  useEffect(() => {
-    getPeoples();
-  }, []);
+	useEffect(() => {
+		getPeoples();
+	}, []);
 
-  return (
-    <div className="peoples-page">
-      <SearchInput />
+	return (
+		<div className="peoples-page">
+			<SearchInput />
 
-      {isLoading && <Loader />}
+			{isLoading && <Loader />}
 
-      {!isLoading && peoples.map((item) => <PeopleItem item={item} />)}
-    </div>
-  );
+			{!isLoading && peoples.map((item) => <PeopleItem item={item} />)}
+		</div>
+	);
 };
 
 export default PeoplesPage;
