@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PeopleItem from "../../components/people-item/people-item.component";
 import SearchInput from "../../components/search-input/search-input.component";
 import "./peoples.page.sass";
+import Loader from "../../components/loader/loader.component";
 
 const PeoplesPage = () => {
   const [peoples, setPeoples] = useState([]);
@@ -28,8 +29,7 @@ const PeoplesPage = () => {
     <div className="peoples-page">
       <SearchInput />
 
-      {/* TODO add loading */}
-      {isLoading && <div className="">Loading...</div>}
+      {isLoading && <Loader />}
 
       {!isLoading && peoples.map((item) => <PeopleItem item={item} />)}
     </div>
