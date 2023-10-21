@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { RouteObject, useRoutes } from "react-router-dom";
 import MainPage from "./pages/main/main.page";
 import {
 	FAVORITES_PAGE_PATH,
@@ -12,19 +12,24 @@ import PeoplePage from "./pages/people/people.page";
 import "./App.sass";
 
 function App() {
-	return (
-		<div className="App">
-			<Routes>
-				<Route path="/">
-					<Route path={MAIN_PAGE_PATH} element={<MainPage />} />
-					<Route path={PEOPLES_PAGE_PATH} element={<PeoplesPage />} />
-					<Route path={FAVORITES_PAGE_PATH} element={<FavoritesPage />} />
-					<Route path={PEOPLE_PAGE_PATH} element={<PeoplePage />} />
-					<Route path="*" element={<MainPage />} />
-				</Route>
-			</Routes>
-		</div>
-	);
+	const routes: RouteObject[] = [
+		{
+			path: "/",
+			children: [
+				{ index: true, element: <MainPage /> },
+				{
+					path: PEOPLES_PAGE_PATH,
+					element: <PeoplesPage />,
+				},
+				{ path: PEOPLE_PAGE_PATH, element: <PeoplePage /> },
+				{ path: "*", element: <MainPage /> },
+			],
+		},
+	];
+
+	const page = useRoutes(routes);
+
+	return <div className="App">{page}</div>;
 }
 
 export default App;
