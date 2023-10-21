@@ -14,6 +14,7 @@ const PeoplesPage = () => {
 
 		if (res.ok) {
 			const resData = JSON.parse(await res.text()).results;
+			console.log(resData);
 			setLoading(false);
 			setPeoples(resData);
 		}
