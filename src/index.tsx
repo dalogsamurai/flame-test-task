@@ -8,17 +8,17 @@ import { Provider } from "react-redux";
 import "./index.css";
 
 const defaultState = {
-	heroes: [],
+	peoples: [],
 };
 
 const reducer = (state = defaultState, action: any) => {
 	switch (action.type) {
-		case "ADD_HERO":
+		case "ADD_PEOPLE":
 			// @ts-ignore
-			return { ...state, heroes: state.heroes.push(action.payload) };
-		case "DELETE_HERO":
+			return { ...state, peoples: state.peoples.push(action.payload) };
+		case "DELETE_PEOPLE":
 			// @ts-ignore
-			return { ...state, heroes: state.heroes.pop(action.payload) };
+			return { ...state, peoples: state.peoples.pop(action.payload) };
 		default:
 			return state;
 	}
