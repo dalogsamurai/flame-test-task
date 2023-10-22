@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { ADD_PEOPLE, DELETE_PEOPLE } from "./constants";
+import { ADD_PEOPLE, DELETE_PEOPLE, GET_PEOPLE_FROM_LS } from "./constants";
 import "./index.css";
 
 const defaultState = {
@@ -27,6 +27,12 @@ const reducer = (state = defaultState, action: any) => {
 					(people) => people.name !== action.payload.name,
 				),
 			};
+		case GET_PEOPLE_FROM_LS:
+			return {
+				...state,
+				peoples: action.payload,
+			};
+
 		default:
 			return state;
 	}

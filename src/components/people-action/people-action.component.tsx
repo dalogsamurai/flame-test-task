@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import iDelete from "../../assets/delete.svg";
 import iFavorite from "../../assets/favorite.svg";
-import { ADD_PEOPLE, DELETE_PEOPLE } from "../../constants";
+import { ADD_PEOPLE, DELETE_PEOPLE, LS_PEOPLES } from "../../constants";
 import { isElementInArray } from "../../utils/isElementInArray";
+import { useEffect } from "react";
 import "./people-action.component.sass";
 
 interface Props {
@@ -28,6 +29,10 @@ const PeopleAction = ({ hair_color, height, mass, name }: Props) => {
 		});
 	};
 
+	const updateLocalStorage = () => {
+		localStorage.setItem(LS_PEOPLES, JSON.stringify(peoples));
+	};
+
 	const deletePeople = () => {
 		dispatch({
 			type: DELETE_PEOPLE,
@@ -39,6 +44,10 @@ const PeopleAction = ({ hair_color, height, mass, name }: Props) => {
 			},
 		});
 	};
+
+	useEffect(() => {
+		updateLocalStorage();
+	}, [peoples]);
 
 	return (
 		<div className="people-action">
