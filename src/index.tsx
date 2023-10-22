@@ -15,7 +15,11 @@ const reducer = (state = defaultState, action: any) => {
 	switch (action.type) {
 		case "ADD_PEOPLE":
 			// @ts-ignore
-			return { ...state, peoples: state.peoples.push(action.payload) };
+			return {
+				...state,
+				peoples: [...state.peoples, action.payload],
+				// peoples: state.peoples.push(action.payload)
+			};
 		case "DELETE_PEOPLE":
 			// @ts-ignore
 			return { ...state, peoples: state.peoples.pop(action.payload) };

@@ -4,7 +4,6 @@ import Loader from "../../components/loader/loader.component";
 import { IPeople } from "../../types/IPeople";
 import PeopleList from "../../components/people-list/people-list.component";
 import "./peoples.page.sass";
-import { getIdFromUrl } from "../../utils/getIdFromUrl";
 
 const PeoplesPage = () => {
 	const [peoples, setPeoples] = useState<IPeople[]>([]);
